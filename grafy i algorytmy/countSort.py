@@ -1,4 +1,3 @@
-
 class CountSort():
     def __init__(self):
         x = input().split()
