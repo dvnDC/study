@@ -1,0 +1,68 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="Files Checker" Height="450" Width="800">
+    <Grid>
+        <!-- Definicja wierszy -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Dla ToolBar -->
+            <RowDefinition Height="*"/>
+            <!-- Dla głównej treści -->
+            <RowDefinition Height="Auto"/>
+            <!-- Dla paska statusu -->
+        </Grid.RowDefinitions>
+
+        <!-- Definicja kolumn -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <!-- Dla drzewa folderów -->
+            <ColumnDefinition Width="*"/>
+            <!-- Dla zawartości pliku -->
+        </Grid.ColumnDefinitions>
+
+        <!-- ToolBar z menu -->
+        <ToolBar Grid.Row="0" Grid.ColumnSpan="2">
+            <Menu>
+                <MenuItem Header="File">
+                    <MenuItem Header="Open" Click="OpenFolder_Click"/>
+                    <MenuItem Header="Exit" Click="Exit_Click"/>
+                </MenuItem>
+            </Menu>
+        </ToolBar>
+
+        <!-- Miejsce na TreeView -->
+
+        <TreeView x:Name="FoldersTreeView" Grid.Row="1" Grid.Column="0">
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type TreeViewItem}">
+                    <Setter Property="ContextMenu">
+                        <Setter.Value>
+                            <ContextMenu>
+                                <MenuItem Header="Open" Click="OpenFile_Click"/>
+                                <MenuItem Header="Create" Click="CreateMenuItem_Click"/>
+                                <MenuItem Header="Delete" Click="DeleteMenuItem_Click"/>
+                            </ContextMenu>
+                        </Setter.Value> 
+                    </Setter>
+                </Style>
+            </TreeView.ItemContainerStyle>
+        </TreeView>
+
+
+
+        <!-- Miejsce na zawartość pliku -->
+        <ScrollViewer Grid.Row="1" Grid.Column="1">
+            <TextBlock x:Name="FileContentTextBlock" TextWrapping="Wrap" />
+        </ScrollViewer>
+
+        <!-- Pasek statusu -->
+        <StatusBar Grid.Row="2" Grid.ColumnSpan="2">
+            <!-- Elementy paska statusu można tu dodać -->
+        </StatusBar>
+    </Grid>
+</Window>
